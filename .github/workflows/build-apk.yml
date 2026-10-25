@@ -1,9 +1,5 @@
-name: Build Matrimony APK
-
-'on':
-push:
-branches: [main]
-workflow_dispatch:
+name: Android APK Build
+'on': push
 
 jobs:
 build:
@@ -20,9 +16,11 @@ steps:
     with:
       gradle-version: '8.7'
 
-  - run: gradle assembleDebug
+  - name: Build APK
+    run: gradle assembleDebug
 
-  - uses: actions/upload-artifact@v4
+  - name: Save APK
+    uses: actions/upload-artifact@v4
     with:
       name: matrimony-apk
       path: app/build/outputs/apk/debug/*.apk
