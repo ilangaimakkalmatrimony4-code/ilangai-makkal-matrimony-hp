@@ -9,12 +9,11 @@ workflow_dispatch:
 jobs:
 build:
 runs-on: ubuntu-latest
-
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+- name: Checkout repository
+uses: actions/checkout@v4
 
-  - name: Set up Java 17
+  - name: Set up Java
     uses: actions/setup-java@v4
     with:
       distribution: temurin
@@ -25,7 +24,7 @@ steps:
     with:
       gradle-version: '8.7'
 
-  - namei: Build Android APK
+  - name: Build APK
     run: gradle assembleDebug
 
   - name: Upload APK
